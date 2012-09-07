@@ -1,6 +1,6 @@
-# django-fusionbox
+# django-fusionbox-error_logging
 
-Useful tools for Django development.
+Better broken link emailing and reporting for Django
 
 
 ## Contributing
