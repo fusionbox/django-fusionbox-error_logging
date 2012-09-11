@@ -14,4 +14,4 @@ Contributions to `django-fusionbox` are welcome provided they adhere to the foll
 
 ## Documentation
 
-http://django-fusionbox.readthedocs.org/projects/django-fusionbox-error_logging/
+http://django-fusionbox.readthedocs.org/projects/django-fusionbox-error_logging/en/latest/
