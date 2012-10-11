@@ -10,6 +10,7 @@ class Logged404Admin(admin.ModelAdmin, CsvAdmin):
     list_filter = ('domain', 'is_internal')
     search_fields = ('domain', 'referer', 'path')
     readonly_fields = ('domain', 'referer', 'is_internal', 'path', 'created_at')
+    exclude = ('hash',)
     actions_on_top = True
     save_on_top = True
 
