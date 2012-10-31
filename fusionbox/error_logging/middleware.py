@@ -5,6 +5,8 @@ from django.core.mail import mail_managers
 
 from fusionbox.error_logging.models import Logged404, hash_args
 
+FUSIONBOX_INTERNAL_ALWAYS_NOTIFY = getattr(settings, 'FUSIONBOX_INTERNAL_ALWAYS_NOTIFY', True)
+
 
 class FusionboxCommonMiddleware(object):
     """
@@ -56,7 +58,7 @@ class FusionboxCommonMiddleware(object):
                             )
                         created = True
 
-                    if is_internal or created:
+                    if (is_internal and FUSIONBOX_INTERNAL_ALWAYS_NOTIFY) or created:
                         ua = request.META.get('HTTP_USER_AGENT', '<none>')
                         ip = request.META.get('REMOTE_ADDR', '<none>')
                         mail_managers("Broken %slink on %s" % ((is_internal and 'INTERNAL ' or ''), domain),
