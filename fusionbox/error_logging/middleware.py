@@ -6,6 +6,7 @@ from django.core.mail import mail_managers
 from fusionbox.error_logging.models import Logged404, hash_args
 
 FUSIONBOX_INTERNAL_ALWAYS_NOTIFY = getattr(settings, 'FUSIONBOX_INTERNAL_ALWAYS_NOTIFY', True)
+FUSIONBOX_SEND_BROKEN_LINK_EMAILS = getattr(settings, 'FUSIONBOX_SEND_BROKEN_LINK_EMAILS', True)
 
 
 class FusionboxCommonMiddleware(object):
@@ -37,7 +38,7 @@ class FusionboxCommonMiddleware(object):
         Take over CommonMiddleware's error reporting for broken links.
         """
         if response.status_code == 404:
-            if settings.FUSIONBOX_SEND_BROKEN_LINK_EMAILS and not settings.DEBUG:
+            if FUSIONBOX_SEND_BROKEN_LINK_EMAILS and not settings.DEBUG:
                 # If the referrer was from an internal link or a non-search-engine site,
                 # send a note to the managers.
                 domain = request.get_host()
